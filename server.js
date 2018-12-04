@@ -12,7 +12,7 @@ const app = express();
 app.use(morgan('common'));
 
 //a sample post
-BlogPosts.create('Thumbs','Thumbs go on the hands.', 'Thumbs Flannagan Mcgillicuddy', '1995');
+BlogPosts.create('Thumbs','Thumbs go on the hands.', 'Thumbs Flannagan Mcgillicuddy', new Date()); //moment.js library
 
 app.get('/blog-posts', (req, res) => {
     res.json(BlogPosts.get());
@@ -20,7 +20,7 @@ app.get('/blog-posts', (req, res) => {
 
 app.delete('/blog-posts/:id', (req, res) => {
     BlogPosts.delete(req.params.id);
-    console.log(`Deleted shopping list item \`${req.params.ID}\``);
+    console.log(`Deleted shopping list item \`${req.params.id}\``);
     res.status(204).end();
   });
 
@@ -67,3 +67,5 @@ app.put('/blog-posts/:id', jsonParser, (req, res) => {
 app.listen(process.env.PORT || 8080, () => {
     console.log(`Your app is listening on port ${process.env.PORT || 8080}`);
   });
+
+  //MVC
